@@ -2,14 +2,15 @@
 
 > 基于 Vue 的面板分割
 
-## 安装
+## 安装 Install
 
 ``` bash
 $ npm i vue-page-split -S
 ```
-## 使用
+## 使用 Usage
 
 在 Vue 项目中使用 PageSplit
+How to use in Vue project.
 
 ```html
 <template>
@@ -51,7 +52,7 @@ export default {
 </script>
 ```
 
-## 属性
+## 属性 Properties
 
 | 属性名                  | 类型    | 默认值    | 说明                                   |
 |-------------------------|---------|-----------|----------------------------------------|
@@ -69,9 +70,11 @@ export default {
 
 
 备注：遮挡层用于捕获鼠标事件，主要在组件内包含iframe时使用，因为iframe会“吞噬”鼠标事件
+Tip: Component Mask is for capturing mouse event. 
+It is necessary when there is an iframe inside the page, because iframe will hide the mouse event from the page.
 
 
-## 事件
+## 事件 Events
 本组件会触发3个事件：
 
 | 事件名              | 说明     | 返回值    |
@@ -81,7 +84,10 @@ export default {
 | resizeLineEndMove   | 拖拽结束 | -         |
 
 
-## 效果图
+## 效果图 Sample Pictures
+如果图片加载不出，请到 Homepage 或 Repository 查看
+In case of missing sample pictures, please go to the Homepage or Repository.
+
 ![效果图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/1.png)
 ![效果图2](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/2.png)
 ![效果图3](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/3.png)
