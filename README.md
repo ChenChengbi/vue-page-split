@@ -10,6 +10,7 @@ $ npm i vue-page-split -S
 ## 使用 Usage
 
 在 Vue 项目中使用 PageSplit
+
 How to use in Vue project.
 
 ```html
@@ -70,7 +71,9 @@ export default {
 
 
 备注：遮挡层用于捕获鼠标事件，主要在组件内包含iframe时使用，因为iframe会“吞噬”鼠标事件
+
 Tip: Component Mask is for capturing mouse event. 
+
 It is necessary when there is an iframe inside the page, because iframe will hide the mouse event from the page.
 
 
@@ -86,7 +89,8 @@ It is necessary when there is an iframe inside the page, because iframe will hid
 
 ## 效果图 Sample Pictures
 如果图片加载不出，请到 Homepage 或 Repository 查看
-In case of missing sample pictures, please go to the Homepage or Repository.
+
+In case of missing sample pictures, please go to the Homepage or Repository and check.
 
 ![效果图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/1.png)
 ![效果图2](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/2.png)
