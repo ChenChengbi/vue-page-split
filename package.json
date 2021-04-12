@@ -1,12 +1,12 @@
 {
   "name": "vue-page-split",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "基于 Vue 的面板分割",
   "main": "lib/vue-page-split.umd.min.js",
   "keywords": "vue page split",
   "author": "Billy Chen",
   "homepage": "https://gitee.com/bi2008/vue-page-split",
-  "repository": "https://gitee.com/bi2008/vue-page-split",
+  "repository": "https://github.com/ChenChengbi/vue-page-split",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
