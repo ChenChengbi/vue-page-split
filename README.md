@@ -92,11 +92,11 @@ It is necessary when there is an iframe inside the page, because iframe will hid
 
 In case of missing sample pictures, please go to the Homepage or Repository and check.
 
-![动效图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/vue-page-split-demo.gif)
+![动效图1](https://raw.githubusercontent.com/ChenChengbi/vue-page-split/64e3661552dc5081fdf7862647a5a7cbe0430169/screenshot/vue-page-split-demo.gif)
 
-![效果图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/1.png)
-![效果图2](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/2.png)
-![效果图3](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/3.png)
-![效果图4](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/4.png)
+<!-- ![效果图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/1.png)
+![效果图2](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/2.png) -->
+![效果图3](https://raw.githubusercontent.com/ChenChengbi/vue-page-split/64e3661552dc5081fdf7862647a5a7cbe0430169/screenshot/3.png)
+<!-- ![效果图4](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/4.png)
 ![效果图5](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/5.png)
-![效果图6](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/6.png)
+![效果图6](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/6.png) -->
