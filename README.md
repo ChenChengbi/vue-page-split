@@ -1,6 +1,6 @@
 # Vue Page Split
 
-> 基于 Vue 的面板分割
+> 基于 Vue 的面板分割(可拖拉缩放子面板)
 
 ## 安装 Install
 
@@ -91,6 +91,8 @@ It is necessary when there is an iframe inside the page, because iframe will hid
 如果图片加载不出，请到 Homepage 或 Repository 查看
 
 In case of missing sample pictures, please go to the Homepage or Repository and check.
+
+![动效图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/vue-page-split-demo.gif)
 
 ![效果图1](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/1.png)
 ![效果图2](https://gitee.com/bi2008/vue-page-split/raw/master/screenshot/2.png)
