@@ -1,6 +1,6 @@
 {
   "name": "vue-page-split",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "基于 Vue 的面板分割",
   "main": "lib/vue-page-split.umd.min.js",
   "keywords": ["vue", "page", "split", "splitter", "pane", "panel", "splittable", "drag", "draggable", "resize", "resizable"],

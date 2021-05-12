@@ -95,5 +95,5 @@ This component will trigger three events.
 
 In case of missing sample pictures, please go to the Homepage or Repository and check.
 
-![动效图1](https://raw.githubusercontent.com/ChenChengbi/vue-page-split/64e3661552dc5081fdf7862647a5a7cbe0430169/screenshot/vue-page-split-demo.gif)
-![效果图3](https://raw.githubusercontent.com/ChenChengbi/vue-page-split/64e3661552dc5081fdf7862647a5a7cbe0430169/screenshot/3.png)
+![动效图1](https://raw.fastgit.org/ChenChengbi/vue-page-split/master/screenshot/vue-page-split-demo.gif)
+![效果图3](https://raw.fastgit.org/ChenChengbi/vue-page-split/master/screenshot/3.png)
