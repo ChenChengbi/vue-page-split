@@ -2,14 +2,14 @@
  * @Author: Billy
  * @Date: 2021-04-05 21:15:15
  * @LastEditors: Billy
- * @LastEditTime: 2021-04-05 22:45:45
+ * @LastEditTime: 2021-10-10 23:32:27
  * @Description: 请输入
 -->
 <template>
   <div
     :id="resizeLinePaneId"
     class="resize-line-pane"
-    :class="isVertical?'pane-vertical':'pane-horizontal'"
+    :class="isVertical ? 'pane-vertical' : 'pane-horizontal'"
   >
     <div class="pane pane-1st">
       <slot name="first"></slot>
@@ -17,9 +17,9 @@
     <div
       :id="resizeLineId"
       class="resize-line"
-      :class="isVertical?'resize-vertical':'resize-horizontal'"
+      :class="isVertical ? 'resize-vertical' : 'resize-horizontal'"
     >
-      <div class="tip" :class="isVertical?'vertical':'horizontal'">
+      <div class="tip" :class="isVertical ? 'vertical' : 'horizontal'">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
@@ -38,7 +38,7 @@ export default {
     return {
       resizeLinePaneId:
         "resize-line-pane-" + Number.parseInt(Math.random() * 100000),
-      resizeLineId: "resize-line" + Number.parseInt(Math.random() * 100000)
+      resizeLineId: "resize-line" + Number.parseInt(Math.random() * 100000),
     };
   },
   props: {
@@ -46,77 +46,77 @@ export default {
     distribute: {
       type: Number,
       default: 0.5,
-      validator: function(value) {
+      validator: function (value) {
         return value > 0 && value < 1;
-      }
+      },
     },
     // 调整模式(true:ResizeLine垂直摆放,false:ResizeLine水平摆放)
     isVertical: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 分割线的宽度
     lineThickness: {
       type: Number,
       default: 6,
-      validator: function(value) {
+      validator: function (value) {
         return value >= 6;
-      }
+      },
     },
     // 分割线中是否有三条杠
     hasLineTip: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 分割线的背景颜色
     backgroundColor: {
       type: String,
-      default: "#a0cfff"
+      default: "#a0cfff",
     },
     // 分割线的鼠标hover后的颜色
     hoverColor: {
       type: String,
-      default: "#409eff"
+      default: "#409eff",
     },
     // 分割线是否有box-shadow样式
     hasBoxShadow: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 左组件/上组件的最小宽度/高度，必须>=0
     firstMinValue: {
       type: Number,
       default: 0,
-      validator: function(value) {
+      validator: function (value) {
         return value >= 0;
-      }
+      },
     },
     // 右组件/下组件的最小宽度/高度，必须>=0
     secondMinValue: {
       type: Number,
       default: 0,
-      validator: function(value) {
+      validator: function (value) {
         return value >= 0;
-      }
+      },
     },
     // 左组件/上组件是否需要遮挡层（如果组件内有iframe，是需要有遮挡层的，否则鼠标进入iframe区域后，是发送不到鼠标移动事件的）
     isFirstComponentMasked: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 右组件/下组件是否需要遮挡层（如果组件内有iframe，是需要有遮挡层的，否则鼠标进入iframe区域后，是发送不到鼠标移动事件的）
     isSecondComponentMasked: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   watch: {
-    isVertical: function() {
+    isVertical: function () {
       this.init();
     },
-    distribute: function() {
+    distribute: function () {
       this.init();
-    }
+    },
   },
   mounted() {
     this.init();
@@ -138,7 +138,7 @@ export default {
         let tipLines = resizeLine
           .getElementsByClassName("tip")[0]
           .getElementsByClassName("line");
-        tipLines.forEach(line => {
+        tipLines.forEach((line) => {
           line.style.backgroundColor = this.hoverColor;
         });
       }
@@ -151,11 +151,39 @@ export default {
         ? resizeLinePane.offsetWidth
         : resizeLinePane.offsetHeight;
       // resize line 占据整个页面尺寸的比例
-      let halfResizeLineProportion = this.lineThickness / componentsSizeSum;
-      let firstComponentSize =
-        (this.distribute - halfResizeLineProportion / 2) * 100;
-      let secondComponentSize =
-        (1 - this.distribute - halfResizeLineProportion / 2) * 100;
+      let resizeLineRate = this.lineThickness / componentsSizeSum;
+
+      // ---------------------------------------------------------------------
+      let firstComponentMinRate = 0,
+        secondComponentMinRate = 0;
+
+      // 如果两边的组件有设置最小宽度
+      if (this.firstMinValue > 0) {
+        firstComponentMinRate = this.firstMinValue / componentsSizeSum;
+      }
+
+      if (this.secondMinValue > 0) {
+        secondComponentMinRate = this.secondMinValue / componentsSizeSum;
+      }
+      // ---------------------------------------------------------------------
+
+      let halfresizeLineRate = resizeLineRate / 2;
+
+      let firstComponentRate = this.distribute - halfresizeLineRate;
+      let secondComponentRate = 1 - this.distribute - halfresizeLineRate;
+
+      // ---------------------------------------------------------------------
+      if (firstComponentMinRate > firstComponentRate) {
+        firstComponentRate = firstComponentMinRate;
+        secondComponentRate = 1 - firstComponentRate - resizeLineRate;
+      } else if (secondComponentMinRate > secondComponentRate) {
+        secondComponentRate = secondComponentMinRate;
+        firstComponentRate = 1 - secondComponentRate - resizeLineRate;
+      }
+      // ---------------------------------------------------------------------
+
+      let firstComponentSize = firstComponentRate * 100;
+      let secondComponentSize = secondComponentRate * 100;
 
       if (this.isVertical) {
         firstComponent.style.width = firstComponentSize + "%";
@@ -182,7 +210,7 @@ export default {
       let startValue, old1stComponentSize, old2ndComponentSize;
 
       // 当按下鼠标
-      resizeLine.onmousedown = e => {
+      resizeLine.onmousedown = (e) => {
         this.$emit("resizeLineStartMove");
 
         let firstMaskNode, secondMaskNode;
@@ -218,7 +246,7 @@ export default {
 
         // 当鼠标移动
         // https://stackoverflow.com/questions/56807253/added-non-passive-event-listener-to-a-scroll-blocking-touchmove-event-conside
-        document.onmousemove = e => {
+        document.onmousemove = (e) => {
           this.$emit("resizeLineMove", e);
 
           // 移动的时候的坐标值
@@ -313,12 +341,12 @@ export default {
       };
 
       // 当鼠标移到Resize Line上面(此处不用onmouseover是因为onmouseover有事件冒泡，连resize line里的tip->line都会捕获事件，引起变色)
-      resizeLine.onmouseenter = e => {
+      resizeLine.onmouseenter = (e) => {
         this.$_addClass(resizeLine, "resize-hover");
         e.target.style.backgroundColor = this.hoverColor;
       };
       // 当鼠标从Resize Line移走(此处不用onmouseout是因为onmouseout有事件冒泡，连resize line里的tip->line都会捕获事件，引起变色)
-      resizeLine.onmouseleave = e => {
+      resizeLine.onmouseleave = (e) => {
         this.$_removeClass(resizeLine, "resize-hover");
         e.target.style.backgroundColor = this.backgroundColor;
       };
@@ -337,13 +365,15 @@ export default {
         : resizeLinePane.offsetHeight;
 
       // 缩放前左右/上下组件的尺寸
-      let firstComponentSize = (this.isVertical
-        ? firstComponent.style.width
-        : firstComponent.style.height
+      let firstComponentSize = (
+        this.isVertical
+          ? firstComponent.style.width
+          : firstComponent.style.height
       ).slice(0, -1); // 去掉最后的#号
-      let secondComponentSize = (this.isVertical
-        ? secondComponent.style.width
-        : secondComponent.style.height
+      let secondComponentSize = (
+        this.isVertical
+          ? secondComponent.style.width
+          : secondComponent.style.height
       ).slice(0, -1);
 
       // 缩放前 resize line 的占比
@@ -395,7 +425,7 @@ export default {
       parentNode.appendChild(mask);
       return {
         maskNode: mask,
-        originPosition: originPosition
+        originPosition: originPosition,
       };
     },
 
@@ -408,8 +438,8 @@ export default {
     $_removeMask(parentNode, maskNode, originPositionOfParendNode) {
       parentNode.removeChild(maskNode);
       parentNode.style.position = originPositionOfParendNode;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

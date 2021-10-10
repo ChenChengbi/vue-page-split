@@ -2,15 +2,16 @@
  * @Author: Billy
  * @Date: 2021-04-05 20:59:56
  * @LastEditors: Billy
- * @LastEditTime: 2021-04-07 01:59:25
+ * @LastEditTime: 2021-10-10 23:36:26
  * @Description: 请输入
 -->
 <template>
   <div id="app">
     <PageSplit
-      :distribute="0.5"
+      :distribute="0.2"
       :lineThickness="6"
       :isVertical="true"
+      :firstMinValue="300"
       @resizeLineStartMove="onresizeLineStartMove"
       @resizeLineMove="onResizeLineMove"
       @resizeLineEndMove="onresizeLineEndMove"
@@ -33,16 +34,16 @@ export default {
   name: "App",
   components: { PageSplit },
   methods: {
-    onresizeLineStartMove: function() {
+    onresizeLineStartMove: function () {
       // console.log("onresizeLineStartMove");
     },
-    onResizeLineMove: function(e) {
+    onResizeLineMove: function (e) {
       // console.log("onResizeLineMove :>> ", e);
     },
-    onresizeLineEndMove: function() {
+    onresizeLineEndMove: function () {
       // console.log("onresizeLineEndMove");
-    }
-  }
+    },
+  },
 };
 </script>
 
