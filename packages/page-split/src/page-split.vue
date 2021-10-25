@@ -2,7 +2,7 @@
  * @Author: Billy
  * @Date: 2021-04-05 21:15:15
  * @LastEditors: Billy
- * @LastEditTime: 2021-10-10 23:32:27
+ * @LastEditTime: 2021-10-25 21:56:35
  * @Description: 请输入
 -->
 <template>
@@ -39,6 +39,8 @@ export default {
       resizeLinePaneId:
         "resize-line-pane-" + Number.parseInt(Math.random() * 100000),
       resizeLineId: "resize-line" + Number.parseInt(Math.random() * 100000),
+      resizeTimeout: null,
+      interval: 500,
     };
   },
   props: {
@@ -120,10 +122,12 @@ export default {
   },
   mounted() {
     this.init();
-    window.addEventListener("optimizedResize", this.$_handleWindowResize);
+    // window.addEventListener("optimizedResize", this.$_handleWindowResize);
+    window.addEventListener("resize", this.$_eventCallback, false);
   },
   destroyed() {
-    window.removeEventListener("optimizedResize", this.$_handleWindowResize);
+    // window.removeEventListener("optimizedResize", this.$_handleWindowResize);
+    window.removeEventListener("resize", this.$_eventCallback);
   },
   methods: {
     init() {
@@ -352,33 +356,34 @@ export default {
       };
     },
 
-    // 当窗口调整大小的时，让resizeline的相对位置不变
+    // 当窗口调整大小的时侯，让resizeline的相对位置不变
     $_handleWindowResize() {
+      console.log("_handleWindowResize");
       let resizeLinePane = document.getElementById(this.resizeLinePaneId);
       let resizeLine = document.getElementById(this.resizeLineId);
       let firstComponent = resizeLine.previousSibling;
       let secondComponent = resizeLine.nextSibling;
 
-      // 缩放后整个面板的尺寸
+      // 缩放后整个面板的尺寸(像素)
       let componentsSizeSum = this.isVertical
         ? resizeLinePane.offsetWidth
         : resizeLinePane.offsetHeight;
 
-      // 缩放前左右/上下组件的尺寸
+      // 缩放前左右/上下组件的尺寸(百分比)
       let firstComponentSize = (
         this.isVertical
           ? firstComponent.style.width
           : firstComponent.style.height
-      ).slice(0, -1); // 去掉最后的#号
+      ).slice(0, -1); // 去掉最后的%号
       let secondComponentSize = (
         this.isVertical
           ? secondComponent.style.width
           : secondComponent.style.height
       ).slice(0, -1);
 
-      // 缩放前 resize line 的占比
+      // 缩放前 resize line 的占比(百分比)
       let originalRlPercent = 100 - firstComponentSize - secondComponentSize;
-      // 缩放后 resize line 的占比
+      // 缩放后 resize line 的占比(百分比)
       let recentRlPercent = (this.lineThickness / componentsSizeSum) * 100;
 
       let difference = recentRlPercent - originalRlPercent;
@@ -438,6 +443,19 @@ export default {
     $_removeMask(parentNode, maskNode, originPositionOfParendNode) {
       parentNode.removeChild(maskNode);
       parentNode.style.position = originPositionOfParendNode;
+    },
+
+    /**
+     * 如果用原生的resize事件，将会损耗大量资源，因为resize事件触发的次数非常多
+     * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Window/resize_event#settimeout
+     */
+    $_eventCallback() {
+      if (!this.resizeTimeout) {
+        this.resizeTimeout = setTimeout(() => {
+          this.resizeTimeout = null;
+          this.$_handleWindowResize();
+        }, this.interval);
+      }
     },
   },
 };
