@@ -2,7 +2,7 @@
  * @Author: Billy
  * @Date: 2021-04-05 21:15:15
  * @LastEditors: Billy
- * @LastEditTime: 2021-10-25 21:56:35
+ * @LastEditTime: 2021-10-26 01:27:24
  * @Description: 请输入
 -->
 <template>
@@ -171,10 +171,10 @@ export default {
       }
       // ---------------------------------------------------------------------
 
-      let halfresizeLineRate = resizeLineRate / 2;
+      let halfResizeLineRate = resizeLineRate / 2;
 
-      let firstComponentRate = this.distribute - halfresizeLineRate;
-      let secondComponentRate = 1 - this.distribute - halfresizeLineRate;
+      let firstComponentRate = this.distribute - halfResizeLineRate;
+      let secondComponentRate = 1 - this.distribute - halfResizeLineRate;
 
       // ---------------------------------------------------------------------
       if (firstComponentMinRate > firstComponentRate) {
