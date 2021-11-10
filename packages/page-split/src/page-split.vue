@@ -2,7 +2,7 @@
  * @Author: Billy
  * @Date: 2021-04-05 21:15:15
  * @LastEditors: Billy
- * @LastEditTime: 2021-10-26 01:27:24
+ * @LastEditTime: 2021-11-10 21:35:20
  * @Description: 请输入
 -->
 <template>
@@ -358,7 +358,6 @@ export default {
 
     // 当窗口调整大小的时侯，让resizeline的相对位置不变
     $_handleWindowResize() {
-      console.log("_handleWindowResize");
       let resizeLinePane = document.getElementById(this.resizeLinePaneId);
       let resizeLine = document.getElementById(this.resizeLineId);
       let firstComponent = resizeLine.previousSibling;
