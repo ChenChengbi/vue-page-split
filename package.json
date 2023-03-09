@@ -1,33 +1,51 @@
 {
   "name": "vue-page-split",
-  "version": "1.2.2",
+  "version": "2.0.1",
   "description": "基于 Vue 的面板分割",
-  "main": "lib/vue-page-split.umd.min.js",
   "keywords": ["vue", "page", "split", "splitter", "pane", "panel", "splittable", "drag", "draggable", "resize", "resizable"],
   "author": "Billy Chen",
   "license": "MIT",
   "homepage": "https://gitee.com/bi2008/vue-page-split",
   "repository": "https://github.com/ChenChengbi/vue-page-split",
+  "main": "dist/vue-page-split.umd.js",
+  "module": "dist/vue-page-split.esm.js",
+  "unpkg": "dist/vue-page-split.min.js",
+  "browser": {
+    "./sfc": "src/components/page-split.vue"
+  },
+  "type": "module",
   "private": false,
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name vue-page-split --dest lib packages/page-split/index.js"
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-page-split.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-page-split.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-page-split.min.js"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "core-js": "^3.8.3",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@rollup/plugin-buble": "^1.0.2",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "rollup": "^3.18.0",
+    "rollup-plugin-vue": "^5.1.9",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "vue-template-compiler": "^2.6.14"
   }
 }

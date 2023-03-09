@@ -1,12 +1,5 @@
-<!--
- * @Author: Billy
- * @Date: 2021-04-05 20:59:56
- * @LastEditors: Billy
- * @LastEditTime: 2021-10-10 23:36:26
- * @Description: 请输入
--->
 <template>
-  <div id="app">
+  <div class="home">
     <PageSplit
       :distribute="0.2"
       :lineThickness="6"
@@ -27,11 +20,10 @@
 </template>
 
 <script>
-import PageSplit from "../packages/page-split";
-// import { PageSplit } from "../packages";
+import PageSplit from "../components/page-split.vue";
 
 export default {
-  name: "App",
+  name: "HomeView",
   components: { PageSplit },
   methods: {
     onresizeLineStartMove: function () {
@@ -46,16 +38,10 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-body {
-  min-width: 1000px; // 页面最小宽度，当浏览器小于此宽带时，出现横向滚动条
-}
-
-#app {
+<style lang="scss" scoped>
+.home {
+  width: 100%;
   height: 100%;
-  font-family: "Microsoft Yahei", "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 </style>

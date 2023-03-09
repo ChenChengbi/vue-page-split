@@ -1,10 +1,3 @@
-/*
- * @Author: Billy
- * @Date: 2021-04-05 20:59:56
- * @LastEditors: Billy
- * @LastEditTime: 2021-04-05 22:04:46
- * @Description: 请输入
- */
 module.exports = {
   root: true,
   env: {
@@ -15,7 +8,7 @@ module.exports = {
     'eslint:recommended'
   ],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser'
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

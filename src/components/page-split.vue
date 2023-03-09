@@ -1,17 +1,10 @@
-<!--
- * @Author: Billy
- * @Date: 2021-04-05 21:15:15
- * @LastEditors: Billy
- * @LastEditTime: 2021-11-10 21:35:20
- * @Description: 请输入
--->
 <template>
   <div
     :id="resizeLinePaneId"
     class="resize-line-pane"
     :class="isVertical ? 'pane-vertical' : 'pane-horizontal'"
   >
-    <div class="pane pane-1st">
+    <div :id="pane1stId" class="pane pane-1st">
       <slot name="first"></slot>
     </div>
     <div
@@ -25,7 +18,7 @@
         <div class="line"></div>
       </div>
     </div>
-    <div class="pane pane-2nd">
+    <div :id="pane2ndId" class="pane pane-2nd">
       <slot name="second"></slot>
     </div>
     <slot></slot>
@@ -36,9 +29,10 @@ export default {
   name: "PageSplit",
   data() {
     return {
-      resizeLinePaneId:
-        "resize-line-pane-" + Number.parseInt(Math.random() * 100000),
-      resizeLineId: "resize-line" + Number.parseInt(Math.random() * 100000),
+      resizeLinePaneId: `resize-line-pane-${this.geneRamdId()}`,
+      resizeLineId: `resize-line-${this.geneRamdId()}`,
+      pane1stId: `pane-1st-${this.geneRamdId()}`,
+      pane2ndId: `pane-2nd-${this.geneRamdId()}`,
       resizeTimeout: null,
       interval: 500,
     };
@@ -131,8 +125,10 @@ export default {
   },
   methods: {
     init() {
-      let resizeLinePane = document.getElementById(this.resizeLinePaneId);
-      let resizeLine = document.getElementById(this.resizeLineId);
+      const resizeLinePane = document.getElementById(this.resizeLinePaneId);
+      const resizeLine = document.getElementById(this.resizeLineId);
+      const firstComponent = document.getElementById(this.pane1stId);
+      const secondComponent = document.getElementById(this.pane2ndId);
 
       // 设置一些样式
       resizeLine.style.backgroundColor = this.backgroundColor;
@@ -142,13 +138,14 @@ export default {
         let tipLines = resizeLine
           .getElementsByClassName("tip")[0]
           .getElementsByClassName("line");
-        tipLines.forEach((line) => {
+
+        for (const line of tipLines) {
           line.style.backgroundColor = this.hoverColor;
-        });
+        }
       }
 
-      let firstComponent = resizeLine.previousSibling;
-      let secondComponent = resizeLine.nextSibling;
+      // let firstComponent = resizeLine.previousSibling;
+      // let secondComponent = resizeLine.nextSibling;
 
       // 初始化左右/上下组件的宽度--start
       let componentsSizeSum = this.isVertical
@@ -403,6 +400,7 @@ export default {
         dom.className = dom.className + " " + cls;
       }
     },
+
     $_removeClass(dom, cls) {
       dom.className = dom.className.replace(cls, "").trim();
     },
@@ -456,10 +454,15 @@ export default {
         }, this.interval);
       }
     },
+
+    geneRamdId() {
+      return Number.parseInt(Math.random() * 100000);
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
+@use "sass:math";
 // 分割线的粗细
 $thickness: 6px;
 $tip-width: 80px;
@@ -516,7 +519,7 @@ $tip-width: 80px;
         width: $tip-width;
         height: $thickness;
         position: relative;
-        top: calc(50% - #{$thickness / 2});
+        top: calc(50% - #{math.div($thickness, 2)});
         // left: calc(50% - #{$tip-width / 2});
         .line {
           height: 1px;
