@@ -26,7 +26,7 @@
 </template>
 <script>
 export default {
-  name: "PageSplit",
+  // name: "PageSplit",
   data() {
     return {
       resizeLinePaneId: `resize-line-pane-${this.geneRamdId()}`,
@@ -143,9 +143,6 @@ export default {
           line.style.backgroundColor = this.hoverColor;
         }
       }
-
-      // let firstComponent = resizeLine.previousSibling;
-      // let secondComponent = resizeLine.nextSibling;
 
       // 初始化左右/上下组件的宽度--start
       let componentsSizeSum = this.isVertical
@@ -357,8 +354,10 @@ export default {
     $_handleWindowResize() {
       let resizeLinePane = document.getElementById(this.resizeLinePaneId);
       let resizeLine = document.getElementById(this.resizeLineId);
-      let firstComponent = resizeLine.previousSibling;
-      let secondComponent = resizeLine.nextSibling;
+      // let firstComponent = resizeLine.previousSibling;
+      // let secondComponent = resizeLine.nextSibling;
+      const firstComponent = document.getElementById(this.pane1stId);
+      const secondComponent = document.getElementById(this.pane2ndId);
 
       // 缩放后整个面板的尺寸(像素)
       let componentsSizeSum = this.isVertical
