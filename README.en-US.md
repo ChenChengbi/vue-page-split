@@ -1,6 +1,8 @@
 # Vue Page Split
 
-> Resizable splitted panels based on Vue.
+> Resizable splitted panels based on Vue2.
+
+[Vue3 Version](https://www.npmjs.com/package/vue3-page-split)
 
 English | [简体中文](./README.md)
 

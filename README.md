@@ -1,6 +1,8 @@
 # Vue Page Split
 
-> 基于 Vue 的可拖拉缩放的分割面板
+> 基于 Vue2 的可拖拉缩放的分割面板
+
+[Vue3 版](https://www.npmjs.com/package/vue3-page-split)
 
 [English](./README.en-US.md) | 简体中文
 
