@@ -20,10 +20,10 @@ How to use in Vue project.
 
 ```html
 <template>
-  <SplitPane
-    :distribute="0.5"
+  <PageSplit
+    :distribute="0.3"
     :lineThickness="6"
-    :isVertical="false"
+    :isVertical="true"
     @resizeLineStartMove="onresizeLineStartMove"
     @resizeLineMove="onResizeLineMove"
     @resizeLineEndMove="onresizeLineEndMove"
@@ -34,26 +34,26 @@ How to use in Vue project.
     <template v-slot:second>
       <h1>B</h1>
     </template>
-  </SplitPane>
+  </PageSplit>
 </template>
 <script>
 import PageSplit from "vue-page-split";
 
 export default {
   components: {
-    SplitPane
+    PageSplit,
   },
   methods: {
-    onresizeLineStartMove: function() {
+    onresizeLineStartMove: function () {
       console.log("onresizeLineStartMove");
     },
-    onResizeLineMove: function(e) {
+    onResizeLineMove: function (e) {
       console.log("onResizeLineMove :>> ", e);
     },
-    onresizeLineEndMove: function() {
+    onresizeLineEndMove: function () {
       console.log("onresizeLineEndMove");
-    }
-  }
+    },
+  },
 };
 </script>
 ```
