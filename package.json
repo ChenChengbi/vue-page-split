@@ -1,6 +1,6 @@
 {
   "name": "vue-page-split",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "基于 Vue2 的面板分割",
   "keywords": ["vue", "page", "split", "splitter", "pane", "panel", "splittable", "drag", "draggable", "resize", "resizable"],
   "author": "Billy Chen",
